@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+  <title>SCROLL CARD SHOWCASE | Futuristic UI</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,500;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- ================= SEO META TAGS ================= -->
+<title>AETHER Studio | AI Creative Ecosystem & Futuristic UI</title>
+
+<meta name="description" content="AETHER Studio is a next-generation AI creative ecosystem for immersive storytelling, neural rendering, holographic design, and futuristic digital experiences.">
+
+<meta name="keywords" content="Aether Studio, AI Creative Platform, Neural Rendering, Holographic Design, Futuristic UI, Web Design, AI Graphics, Digital Experience, Nitish Developer">
+
+<meta name="author" content="Nitish Developer">
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+<meta name="language" content="English">
+<meta name="revisit-after" content="7 days">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://example.com/aether">
+
+<!-- ================= OPEN GRAPH ================= -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="AETHER Studio | AI Creative Ecosystem">
+<meta property="og:description" content="Experience futuristic AI creativity, neural rendering and immersive digital design.">
+<meta property="og:url" content="https://example.com/aether">
+<meta property="og:image" content="https://example.com/assets/og-image.jpg">
+<meta property="og:site_name" content="AETHER Studio">
+
+<!-- ================= TWITTER CARD ================= -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AETHER Studio">
+<meta name="twitter:description" content="Next-generation AI creative ecosystem and futuristic UI experiences.">
+<meta name="twitter:image" content="https://example.com/assets/og-image.jpg">
+
+<!-- ================= FAVICON ================= -->
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<!-- ================= PWA ================= -->
+<meta name="theme-color" content="#0a0a0f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<link rel="manifest" href="/manifest.json">
+
+<!-- ================= PERFORMANCE ================= -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+
+<!-- ================= STRUCTURED DATA ================= -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "AETHER Studio",
+    "url": "https://example.com/aether",
+    "description": "AI-powered creative ecosystem for futuristic digital experiences.",
+    "author": {
+      "@type": "Person",
+      "name": "Nitish Developer"
+    }
+  }
+</script>
+
+<!-- ================= SITEMAP ================= -->
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <!-- GSAP for smooth animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0f;
+      overflow: hidden;
+      height: 100vh;
+      width: 100%;
+      position: fixed;
+      color: #fff;
+    }
+
+    /* dynamic background aura */
+    .bg-aura {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 30%, #6a0dad, #03030a);
+      transition: background 0.65s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+      z-index: 0;
+    }
+
+    /* particle canvas overlay */
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* main container - fullscreen flex layout */
+    .app {
+      position: relative;
+      z-index: 2;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.8rem 1.5rem 1.5rem;
+      backdrop-filter: blur(1px);
+    }
+
+    /* TOP SECTION: huge bold title */
+    .title-block {
+      text-align: center;
+      margin-top: 0.2rem;
+    }
+    .main-title {
+      font-size: clamp(2.0rem, 5vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #ffffff, #A2A2A2B8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 20px rgba(64, 63, 63, 0.42);
+    }
+    .title-sub {
+      font-size: 0.7rem;
+      letter-spacing: 6px;
+      opacity: 0.6;
+      margin-top: 6px;
+    }
+
+    /* MIDDLE: LEFT DYNAMIC TEXT + RIGHT CARD */
+    .middle-area {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      flex: 1;
+      margin: 0.5rem 0 0.8rem;
+      align-items: center;
+    }
+
+    /* LEFT SIDE - fixed position, content changes with animation */
+    .info-panel {
+      background: rgba(8, 8, 18, 0.55);
+      backdrop-filter: blur(14px);
+      border-radius: 2rem;
+      padding: 1.2rem 1.2rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.5);
+    }
+    .website-name {
+      font-size: clamp(1.5rem, 5vw, 2.1rem);
+      font-weight: 800;
+      background: linear-gradient(120deg, #fff, #bbb);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.7rem;
+      letter-spacing: -0.3px;
+    }
+    .description {
+      font-size: 0.9rem;
+      line-height: 1.45;
+      opacity: 0.85;
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+    .features-badge {
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: rgba(255,255,255,0.06);
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      display: inline-block;
+      backdrop-filter: blur(4px);
+      border-left: 3px solid currentColor;
+    }
+
+    /* RIGHT SIDE - PREMIUM CARD WITH 3D & GLOW */
+    .card-wrapper {
+      perspective: 1300px;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+    .premium-card {
+      width: 100%;
+      max-width: 280px;
+      background: rgba(12, 12, 22, 0.6);
+      backdrop-filter: blur(8px);
+      border-radius: 1.8rem;
+      box-shadow: 0 25px 40px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.1);
+      transition: box-shadow 0.3s;
+      transform-style: preserve-3d;
+      position: relative;
+    }
+    .card-inner {
+      padding: 0.35rem;
+      border-radius: 1.8rem;
+    }
+    .img-zone {
+      position: relative;
+      border-radius: 1.4rem;
+      overflow: visible;
+      margin-bottom: 0.7rem;
+      transition: transform 0.25s ease;
+    }
+    .img-zone img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 1.3rem;
+      display: block;
+      box-shadow: 0 18px 25px -12px black;
+      transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+    }
+    /* image popping effect on hover */
+    .premium-card:hover .img-zone img {
+      transform: scale(1.05) translateY(-6px);
+    }
+    .card-badge {
+      position: absolute;
+      bottom: -12px;
+      left: 14px;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(12px);
+      border-radius: 40px;
+      padding: 0.25rem 0.9rem;
+      font-weight: 800;
+      font-size: 1.1rem;
+      border: 1px solid rgba(255,255,255,0.35);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+      z-index: 5;
+    }
+    .glow-edge {
+      position: absolute;
+      inset: 0;
+      border-radius: 1.8rem;
+      background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.4), transparent 70%);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* BOTTOM SECTION */
+    .bottom-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 0.2rem;
+      gap: 0.8rem;
+    }
+    .visit-btn {
+      background: white;
+      border: none;
+      padding: 0.8rem 1.9rem;
+      border-radius: 60px;
+      font-weight: 800;
+      font-size: 1rem;
+      color: #0a0a0f;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 0 12px rgba(255,255,255,0.4);
+      font-family: inherit;
+      letter-spacing: 0.5px;
+    }
+    .visit-btn:active { transform: scale(0.96); }
+    .visit-btn:hover { background: #f0f0ff; box-shadow: 0 0 22px white; }
+
+    .social-area {
+      text-align: right;
+    }
+    .social-icons-row {
+      display: flex;
+      gap: 0.9rem;
+      justify-content: flex-end;
+      margin-bottom: 0.5rem;
+    }
+    .social-icons-row a {
+      background: rgba(255,255,255,0.05);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: #eee;
+      transition: all 0.2s;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.2);
+      text-decoration: none;
+    }
+    .social-icons-row a:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 0 14px currentColor;
+    }
+    .glowing-site-name {
+      font-size: 1.25rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff, #bcbcff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 8px rgba(255,255,255,0.3);
+    }
+
+    /* Mobile responsive: stack left/right on small devices */
+    @media (max-width: 700px) {
+      .app {
+        padding: 1rem 1rem 1rem;
+      }
+      .middle-area {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .info-panel {
+        text-align: left;
+        padding: 1rem;
+      }
+      .premium-card {
+        max-width: 260px;
+        margin: 0 auto;
+      }
+      .social-icons-row a {
+        width: 38px;
+        height: 38px;
+        font-size: 1.1rem;
+      }
+      .visit-btn {
+        padding: 0.7rem 1.5rem;
+      }
+    }
+    @media (max-width: 500px) {
+      .bottom-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .social-area {
+        text-align: center;
+      }
+      .social-icons-row {
+        justify-content: center;
+      }
+      .glowing-site-name {
+        text-align: center;
+        display: block;
+      }
+    }
+
+    /* disable body scroll */
+    body {
+      touch-action: pan-x pan-y; /* but we'll capture wheel/touch */
+    }
+.glass-btn {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 102px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(18px);
+  color: #FFFFFFAB;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  transition: all .25s ease;
+}
+
+.glass-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.glass-btn:active {
+  transform: scale(0.97);
+}
+.glass-btn{
+    position: fixed;
+    bottom: 3px; /* screen ke niche se distance */
+    left: 50%;
+    transform: translateX(-50%);
+}
+  </style>
+</head>
+<body>
+
+<div class="bg-aura" id="bgAura"></div>
+<canvas id="particle-canvas"></canvas>
+
+<div class="app">
+  <!-- TOP TITLE -->
+  <div class="title-block">
+    <div class="main-title">PC<br>Graphics System</div>
+    <div class="title-sub">✦ Nitish Developer ✦</div>
+  </div>
+
+  <!-- MIDDLE: LEFT TEXT + RIGHT CARD -->
+  <div class="middle-area">
+    <!-- LEFT DYNAMIC TEXT (fixed place, content animates) -->
+    <div class="info-panel" id="infoPanel">
+      <div id="textDynamicZone">
+        <div class="website-name" id="dynTitle">NEBULA CORE</div>
+        <div class="description" id="dynDesc">Immersive digital experience with real-time data streams.</div>
+        <div class="features-badge" id="dynFeatures">✨ PC · 8K Holograms</div>
+      </div>
+    </div>
+
+    <!-- RIGHT CARD (will move during scroll) -->
+    <div class="card-wrapper" id="cardWrapper">
+      <div class="premium-card" id="dynamicCard">
+        <div class="card-inner">
+          <div class="img-zone">
+            <img id="cardImage" src="https://picsum.photos/id/26/500/600" alt="card visual">
+          </div>
+          <div class="card-badge" id="cardNumberBadge">1</div>
+        </div>
+        <div class="glow-edge"></div>
+      </div>
+    </div>
+  </div>
+<button class="glass-btn" onclick="openSite('https://google.com')">
+  Content's Us
+</button>
+  <!-- BOTTOM SECTION -->
+  <div class="bottom-bar">
+    <button class="visit-btn" id="visitWebsiteBtn">VISIT WEBSITE</button>
+    <div class="social-area">
+      <div class="social-icons-row">
+        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      <div class="glowing-site-name" id="bottomSiteName">NEBULA CORE</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ======================== EASILY EDITABLE CARDS DATA ========================
+  const cards = [
+    {
+      number: "1",
+      title: "AETHER STUDIO",
+      desc: "Next-generation creative ecosystem powered by artificial intelligence and neural rendering. Designed for immersive storytelling, cinematic visuals, and holographic experiences that merge human creativity with machine intelligence.",
+      features: "⚡ Neural Render • 🎨 AI Creativity • 🌌 Holographic Design",
+      image: "https://ik.imagekit.io/ww5wiqz7db/file_0000000005407206b72cbf12a089b492.png?updatedAt=1780312234601",
+      link: "https://mdcomputers.in/aether",
+      color: "#a100ff"   // purple glow
+    },
+    {
+      number: "2",
+      title: "NEON CYPHER",
+      desc: "A futuristic cyber infrastructure built for Web3, blockchain integration, and real-time digital connectivity. Experience secure decentralized systems with dynamic data streams and next-level virtual interactions.",
+      features: "🌐 Web3 Ready • 🔗 Blockchain Core • 🚀 Real-Time Network",
+      image: "https://ik.imagekit.io/ww5wiqz7db/file_00000000b73872069bdc04b9ef0602e0.png?updatedAt=1780312235099",
+      link: "https://mdcomputers.in/neon",
+      color: "#00c3ff"   // blue neon
+    },
+    {
+      number: "3",
+      title: "INFERNO X",
+      desc: "An ultra-performance gaming and graphics engine engineered for speed, power, and immersive experiences. Optimized for advanced rendering, competitive gameplay, and next-generation visual computing.",
+      features: "🔥 Ray Tracing • ⚡ Extreme Performance • 🎮 Gaming Core",
+      image: "https://ik.imagekit.io/ww5wiqz7db/file_000000003a087209baee17dd554d33b4.png?updatedAt=1780312234528",
+      link: "https://mdcomputers.in/inferno",
+      color: "#ff2a2a"   // red cyber
+    },
+    {
+      number: "4",
+      title: "MATRIX CORE",
+      desc: "A decentralized AI framework designed for deep learning, neural computation, and intelligent automation. Built to process complex data structures with speed, accuracy, and scalability.",
+      features: "🧠 Deep Learning • 📊 Neural Network • 🤖 AI Processing",
+      image: "https://ik.imagekit.io/ww5wiqz7db/file_00000000f4bc7206b304d8e1a2b55612.png?updatedAt=1780312231443",
+      link: "https://mdcomputers.in/matrix",
+      color: "#00ff88"   // green matrix
+    },
+    {
+      number: "5",
+      title: "SOLARIS",
+      desc: "A sustainable energy ecosystem powered by advanced solar technology and intelligent power management. Transforming renewable energy into efficient, scalable, and future-ready solutions.",
+      features: "☀️ Renewable Energy • ⚡ Smart Grid • 🌍 Green Technology",
+      image: "https://ik.imagekit.io/ww5wiqz7db/file_000000000dbc72099519319d23f0a815.png?updatedAt=1780312234505",
+      link: "https://mdcomputers.in/solaris",
+      color: "#ff7700"   // orange fire
+    }
+  ];
+
+  // ------------------------- GLOBALS -------------------------
+  let activeIndex = 0;
+  let isAnimating = false;
+  let touchStartY = 0;
+  let wheelLock = false;
+
+  // DOM elements
+  const bgAura = document.getElementById('bgAura');
+  const dynTitle = document.getElementById('dynTitle');
+  const dynDesc = document.getElementById('dynDesc');
+  const dynFeatures = document.getElementById('dynFeatures');
+  const cardImage = document.getElementById('cardImage');
+  const cardBadge = document.getElementById('cardNumberBadge');
+  const visitBtn = document.getElementById('visitWebsiteBtn');
+  const bottomSiteName = document.getElementById('bottomSiteName');
+  const dynamicCard = document.getElementById('dynamicCard');
+  const cardWrapper = document.getElementById('cardWrapper');
+
+  // Particle system canvas
+  const canvas = document.getElementById('particle-canvas');
+  let ctx = canvas.getContext('2d');
+  let particles = [];
+  let currentParticleColor = "#a100ff";
+
+  // Helper: update all content without animation (for initial load & internal data)
+  function updateContentSilently(index) {
+    const card = cards[index];
+    if (!card) return;
+    dynTitle.innerText = card.title;
+    dynDesc.innerText = card.desc;
+    dynFeatures.innerText = card.features;
+    bottomSiteName.innerText = card.title;
+    cardBadge.innerText = card.number;
+    cardImage.src = card.image;
+    cardImage.alt = card.title;
+    visitBtn.onclick = () => window.open(card.link, '_blank');
+    // background transition + particle color
+    bgAura.style.background = `radial-gradient(circle at 50% 30%, ${card.color}, #03030a)`;
+    currentParticleColor = card.color;
+    // update badge border accent
+    const badgeElem = document.querySelector('.card-badge');
+    if(badgeElem) badgeElem.style.borderColor = card.color;
+  }
+
+  // Animate text change (fade + slide) when card changes
+  function animateTextChange(newIndex, direction) {
+    return new Promise((resolve) => {
+      const textContainer = document.getElementById('textDynamicZone');
+      const titleEl = dynTitle, descEl = dynDesc, featEl = dynFeatures;
+      const newCard = cards[newIndex];
+      if (!newCard) return resolve();
+      
+      // fade out existing text with slide
+      gsap.to([titleEl, descEl, featEl], {
+        opacity: 0,
+        y: direction === 'down' ? -12 : 12,
+        duration: 0.3,
+        stagger: 0.02,
+        ease: "power2.in",
+        onComplete: () => {
+          // swap text
+          titleEl.innerText = newCard.title;
+          descEl.innerText = newCard.desc;
+          featEl.innerText = newCard.features;
+          bottomSiteName.innerText = newCard.title;
+          // fade in
+          gsap.to([titleEl, descEl, featEl], {
+            opacity: 1,
+            y: 0,
+            duration: 0.25,
+            stagger: 0.05,
+            ease: "back.out(0.5)",
+            onComplete: resolve
+          });
+        }
+      });
+    });
+  }
+
+  // CARD SCROLL ANIMATION: old card moves upward, new card slides from bottom
+  async function switchCard(newIndex, direction = 'down') {
+    if (isAnimating) return false;
+    if (newIndex < 0 || newIndex >= cards.length) return false;
+    if (newIndex === activeIndex) return false;
+    
+    isAnimating = true;
+    
+    // Clone current card for exit animation
+    const originalCard = dynamicCard;
+    const wrapperRect = cardWrapper.getBoundingClientRect();
+    const cloneCard = originalCard.cloneNode(true);
+    cloneCard.style.position = 'absolute';
+    cloneCard.style.top = '0px';
+    cloneCard.style.left = '0px';
+    cloneCard.style.width = originalCard.offsetWidth + 'px';
+    cloneCard.style.margin = '0 auto';
+    cloneCard.style.zIndex = '30';
+    cloneCard.style.pointerEvents = 'none';
+    cloneCard.style.transform = 'translateZ(0)';
+    cardWrapper.style.position = 'relative';
+    cardWrapper.appendChild(cloneCard);
+    
+    // Animate clone moving up (direction down) or moving up for upward scroll? Actually old card goes top and disappears
+    const exitY = direction === 'down' ? '-150%' : '150%';
+    gsap.to(cloneCard, {
+      y: exitY,
+      opacity: 100,
+      duration: 0.45,
+      ease: "power3.in",
+      onComplete: () => {
+        cloneCard.remove();
+      }
+    });
+    
+    // Update card content (image, badge) before animating new card in
+    const nextCardData = cards[newIndex];
+    cardImage.src = nextCardData.image;
+    cardBadge.innerText = nextCardData.number;
+    // change badge border
+    const badgeSpan = document.querySelector('.card-badge');
+    if(badgeSpan) badgeSpan.style.borderColor = nextCardData.color;
+    
+    // Hide actual card and animate from bottom
+    gsap.set(originalCard, { y: direction === 'down' ? '100%' : '-100%', opacity: 0, scale: 0.92 });
+    
+    // background gradient transition
+    bgAura.style.background = `radial-gradient(circle at 50% 30%, ${nextCardData.color}, #03030a)`;
+    currentParticleColor = nextCardData.color;
+    
+    // Animate text change simultaneously
+    await animateTextChange(newIndex, direction);
+    
+    // Animate card sliding into place
+    gsap.to(originalCard, {
+      y: '-25%',
+      opacity: 1,
+      scale: 1,
+      duration: 0.8,
+      ease: "back.out(0.7)",
+      onComplete: () => {
+        activeIndex = newIndex;
+        isAnimating = false;
+        // update link button
+        visitBtn.onclick = () => window.open(cards[activeIndex].link, '_blank');
+        // re-apply any 3D style reset
+        originalCard.style.transform = '';
+      }
+    });
+    return true;
+  }
+
+  // =============== SCROLL DETECTION (smooth & premium) ===============
+  let scrollDeltaBuffer = 0;
+  let lastWheelTime = 0;
+  
+  function handleScrollDirection(deltaY) {
+    if (isAnimating) return;
+    // threshold to avoid micro-scroll
+    if (Math.abs(deltaY) < 12) return;
+    const direction = deltaY > 0 ? 'down' : 'up';
+    const newIndex = direction === 'down' ? activeIndex + 1 : activeIndex - 1;
+    if (newIndex >= 0 && newIndex < cards.length) {
+      switchCard(newIndex, direction);
+    }
+  }
+  
+  // Wheel event (desktop & laptop)
+  window.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    if (!isAnimating) {
+      handleScrollDirection(e.deltaY);
+    }
+  }, { passive: false });
+  
+  // Touch handling for mobile (smooth swipe)
+  let touchStart = 0;
+  let touchEnd = 0;
+  
+  window.addEventListener('touchstart', (e) => {
+    touchStart = e.touches[0].clientY;
+  }, { passive: false });
+  
+  window.addEventListener('touchmove', (e) => {
+    if (isAnimating) return;
+    touchEnd = e.touches[0].clientY;
+    const diff = touchStart - touchEnd;
+    if (Math.abs(diff) > 18) {
+      e.preventDefault();
+      const direction = diff > 0 ? 'down' : 'up'; // swiping up => next, down => prev
+      const newIndex = direction === 'down' ? activeIndex + 1 : activeIndex - 1;
+      if (newIndex >= 0 && newIndex < cards.length) {
+        switchCard(newIndex, direction);
+        // reset touch start to avoid multiple triggers
+        touchStart = touchEnd;
+      }
+      touchStart = e.touches[0].clientY;
+    }
+  }, { passive: false });
+  
+  window.addEventListener('touchend', () => {
+    touchStart = 0;
+    touchEnd = 0;
+  });
+  
+  // =============== 3D TILT EFFECT (mouse & touch) ===============
+  function init3DTilt() {
+    const cardElem = document.getElementById('dynamicCard');
+    const imgZone = document.querySelector('.img-zone');
+    if (!cardElem) return;
+    
+    const handleMove = (e) => {
+      if (isAnimating) return;
+      let clientX, clientY;
+      if (e.touches) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else {
+        clientX = e.clientX;
+        clientY = e.clientY;
+      }
+      const rect = cardElem.getBoundingClientRect();
+      const x = (clientX - rect.left) / rect.width - 0.5;
+      const y = (clientY - rect.top) / rect.height - 0.5;
+      const rotX = y * 16;
+      const rotY = x * 16;
+      cardElem.style.transform = `perspective(1300px) rotateX(${-rotX}deg) rotateY(${rotY}deg) translateZ(8px)`;
+      if (imgZone) {
+        imgZone.style.transform = `translateZ(12px) scale(1.02)`;
+      }
+    };
+    const resetTilt = () => {
+      cardElem.style.transform = '';
+      if (imgZone) imgZone.style.transform = '';
+    };
+    cardElem.addEventListener('mousemove', handleMove);
+    cardElem.addEventListener('mouseleave', resetTilt);
+    cardElem.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      if (isAnimating) return;
+      const touch = e.touches[0];
+      const rect = cardElem.getBoundingClientRect();
+      const x = (touch.clientX - rect.left) / rect.width - 0.5;
+      const y = (touch.clientY - rect.top) / rect.height - 0.5;
+      const rotX = y * 14;
+      const rotY = x * 14;
+      cardElem.style.transform = `perspective(1300px) rotateX(${-rotX}deg) rotateY(${rotY}deg) translateZ(6px)`;
+      if (imgZone) imgZone.style.transform = `translateZ(10px) scale(1.01)`;
+    });
+    cardElem.addEventListener('touchend', resetTilt);
+  }
+  
+  // =============== PARTICLE BACKGROUND (glowing aura motion) ===============
+  function initParticles() {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    canvas.width = w;
+    canvas.height = h;
+    const particleCount = Math.min(90, Math.floor(w * h / 10000));
+    particles = [];
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        radius: Math.random() * 3 + 1.2,
+        alpha: Math.random() * 0.5 + 0.2,
+        speedX: (Math.random() - 0.5) * 0.25,
+        speedY: (Math.random() - 0.5) * 0.2,
+      });
+    }
+    animateParticles();
+  }
+  
+  function animateParticles() {
+    if (!ctx) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // parse current color
+    let r = 161, g = 0, b = 255;
+    if (currentParticleColor) {
+      if (currentParticleColor.startsWith('#')) {
+        r = parseInt(currentParticleColor.slice(1,3), 16);
+        g = parseInt(currentParticleColor.slice(3,5), 16);
+        b = parseInt(currentParticleColor.slice(5,7), 16);
+      }
+    }
+    for (let p of particles) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.alpha * 0.65})`;
+      ctx.fill();
+      p.x += p.speedX;
+      p.y += p.speedY;
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+    }
+    requestAnimationFrame(animateParticles);
+  }
+  
+  // resize canvas
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initParticles();
+  });
+  
+  // =============== PAGE LOAD INTRO ANIMATION ===============
+  function pageIntro() {
+    gsap.from(".main-title", { duration: 1, y: -50, opacity: 0, ease: "power4.out", delay: 0.2 });
+    gsap.from(".info-panel", { duration: 0.8, x: -35, opacity: 0, ease: "back", delay: 0.3 });
+    gsap.from(".premium-card", { duration: 0.9, scale: 0.6, opacity: 0, rotateY: 25, ease: "elastic.out(1, 0.5)", delay: 0.45 });
+    gsap.from(".visit-btn", { duration: 0.5, opacity: 0, y: 25, delay: 0.65 });
+    gsap.from(".social-icons-row a", { duration: 0.4, opacity: 0, scale: 0, stagger: 0.07, delay: 0.75 });
+    gsap.from(".glowing-site-name", { duration: 0.5, opacity: 0, delay: 0.85 });
+  }
+  
+  // initial load
+  function init() {
+    updateContentSilently(0);
+    activeIndex = 0;
+    init3DTilt();
+    initParticles();
+    pageIntro();
+  }
+  
+  init();
+document.querySelector(".glass-btn").addEventListener("click", () => {
+  window.open("https://mdcomputers.in", "_blank");
+});
+</script>
+</body>
+</html>
